@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvetloeTvMedia.Web", "SvetloeTvMedia.Web\SvetloeTvMedia.Web.csproj", "{7EA2C08E-75FC-4501-90F8-5BC180A0EC4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvetloeTvMedia.Domain", "SvetloeTvMedia.Domain\SvetloeTvMedia.Domain.csproj", "{C66B6683-A291-435E-8951-E90B34DCB2C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvetloeTvMedia.DataAccess", "SvetloeTvMedia.DataAccess\SvetloeTvMedia.DataAccess.csproj", "{80CE20F4-9635-4528-845D-E212D9C17249}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvetloeTvMedia.Services", "SvetloeTvMedia.Services\SvetloeTvMedia.Services.csproj", "{E55D8EC6-98F4-43E6-ACD8-7B78EBCCB145}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvetloeTvMedia.ViewModels", "SvetloeTvMedia.ViewModels\SvetloeTvMedia.ViewModels.csproj", "{E0821509-D124-48D6-B907-3D40A879FBEF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7EA2C08E-75FC-4501-90F8-5BC180A0EC4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7EA2C08E-75FC-4501-90F8-5BC180A0EC4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7EA2C08E-75FC-4501-90F8-5BC180A0EC4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7EA2C08E-75FC-4501-90F8-5BC180A0EC4E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C66B6683-A291-435E-8951-E90B34DCB2C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C66B6683-A291-435E-8951-E90B34DCB2C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C66B6683-A291-435E-8951-E90B34DCB2C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C66B6683-A291-435E-8951-E90B34DCB2C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80CE20F4-9635-4528-845D-E212D9C17249}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80CE20F4-9635-4528-845D-E212D9C17249}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80CE20F4-9635-4528-845D-E212D9C17249}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80CE20F4-9635-4528-845D-E212D9C17249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E55D8EC6-98F4-43E6-ACD8-7B78EBCCB145}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E55D8EC6-98F4-43E6-ACD8-7B78EBCCB145}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E55D8EC6-98F4-43E6-ACD8-7B78EBCCB145}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E55D8EC6-98F4-43E6-ACD8-7B78EBCCB145}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E0821509-D124-48D6-B907-3D40A879FBEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E0821509-D124-48D6-B907-3D40A879FBEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E0821509-D124-48D6-B907-3D40A879FBEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E0821509-D124-48D6-B907-3D40A879FBEF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6D1C405-E119-4A5B-B958-F534E8EA770F}
+	EndGlobalSection
+EndGlobal
