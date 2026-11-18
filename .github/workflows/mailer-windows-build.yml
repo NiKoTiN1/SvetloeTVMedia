@@ -4,7 +4,8 @@ on:
   push:
     branches: [ "svetloe-mailer-1.0" ]
     paths:
-      - "SvetloeTVMailer/source.zip"
+      - "SvetloeTVMailer/src/**"
+      - "SvetloeTVMailer/installer/**"
       - ".github/workflows/mailer-windows-build.yml"
   workflow_dispatch:
 
@@ -17,22 +18,19 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Expand source package
-        shell: pwsh
-        run: |
-          if (Test-Path SvetloeTVMailer\src) { Remove-Item SvetloeTVMailer\src -Recurse -Force }
-          if (Test-Path SvetloeTVMailer\installer) { Remove-Item SvetloeTVMailer\installer -Recurse -Force }
-          New-Item -ItemType Directory -Force -Path SvetloeTVMailer | Out-Null
-          tar -xf SvetloeTVMailer\source.zip -C SvetloeTVMailer
+
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
+
       - name: Restore
         shell: pwsh
         run: dotnet restore SvetloeTVMailer\src\SvetloeTV.Mailer\SvetloeTV.Mailer.csproj
+
       - name: Publish win-x64 self-contained
         shell: pwsh
         run: dotnet publish SvetloeTVMailer\src\SvetloeTV.Mailer\SvetloeTV.Mailer.csproj -c Release -r win-x64 --self-contained true -o SvetloeTVMailer\publish /p:PublishSingleFile=true /p:IncludeNativeLibrariesForSelfExtract=true /p:DebugType=None /p:DebugSymbols=false
+
       - name: Locate Inno Setup
         id: inno
         shell: pwsh
@@ -44,15 +42,18 @@ jobs:
             $iscc = "C:\Program Files (x86)\Inno Setup 6\ISCC.exe"
           }
           "iscc=$iscc" >> $env:GITHUB_OUTPUT
+
       - name: Build installer
         shell: pwsh
         run: '& "${{ steps.inno.outputs.iscc }}" SvetloeTVMailer\installer\SvetloeTVMailer.iss'
+
       - name: Upload installer artifact
         uses: actions/upload-artifact@v4
         with:
           name: SvetloeTV_Mailer_Setup_1.0
           path: SvetloeTVMailer/dist/SvetloeTV_Mailer_Setup_1.0.exe
           if-no-files-found: error
+
       - name: Commit installer to build branch
         shell: pwsh
         run: |
