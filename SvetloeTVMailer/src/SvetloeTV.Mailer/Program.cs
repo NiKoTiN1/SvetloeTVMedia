@@ -7,6 +7,12 @@ internal static class Program
     [STAThread]
     static void Main()
     {
+        if (Environment.GetCommandLineArgs().Any(a => a.Equals("--selftest", StringComparison.OrdinalIgnoreCase)))
+        {
+            Environment.ExitCode = RunSelfTest();
+            return;
+        }
+
         ApplicationConfiguration.Initialize();
         Application.SetUnhandledExceptionMode(UnhandledExceptionMode.CatchException);
         Application.ThreadException += (_, e) => AppLog.Error("UI", e.Exception);
@@ -40,6 +46,31 @@ internal static class Program
         {
             AppLog.Error("Startup", ex);
             MessageBox.Show($"Не удалось запустить программу.\n\n{ex.Message}\n\nПодробности записаны в журнал.", "Светлое ТВ — Рассылка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private static int RunSelfTest()
+    {
+        try
+        {
+            AppPaths.Ensure();
+            using var store = new AppStore();
+            store.Initialize();
+            var marker = Guid.NewGuid().ToString("N");
+            store.SetMeta("SelfTest", marker);
+            if (store.GetMeta("SelfTest") != marker) return 11;
+
+            var settings = new AppSettings();
+            SettingsStore.SetPassword(settings, "self-test-secret");
+            if (SettingsStore.GetPassword(settings) != "self-test-secret") return 12;
+
+            store.Backup();
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            AppLog.Error("SelfTest", ex);
+            return 10;
         }
     }
 }
