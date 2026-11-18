@@ -60,7 +60,7 @@ public sealed class SettingsStore
         {
             using var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Run", true);
             if (key == null) return;
-            if (enabled) key.SetValue("SvetloeTVMailer", "\\"" + Application.ExecutablePath + "\\" --autostart");
+            if (enabled) key.SetValue("SvetloeTVMailer", "\"" + Application.ExecutablePath + "\" --autostart");
             else key.DeleteValue("SvetloeTVMailer", false);
         }
         catch (Exception ex) { AppLog.Error("AutoStart", ex); }
