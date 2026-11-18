@@ -22,7 +22,8 @@ jobs:
         run: |
           if (Test-Path SvetloeTVMailer\src) { Remove-Item SvetloeTVMailer\src -Recurse -Force }
           if (Test-Path SvetloeTVMailer\installer) { Remove-Item SvetloeTVMailer\installer -Recurse -Force }
-          Expand-Archive -Path SvetloeTVMailer\source.zip -DestinationPath SvetloeTVMailer -Force
+          New-Item -ItemType Directory -Force -Path SvetloeTVMailer | Out-Null
+          tar -xf SvetloeTVMailer\source.zip -C SvetloeTVMailer
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: "8.0.x"
