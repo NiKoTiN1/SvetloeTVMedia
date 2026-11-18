@@ -1,4 +1,3 @@
-using System.Security.Authentication;
 using System.Text.RegularExpressions;
 using MailKit.Net.Smtp;
 using MailKit.Security;
@@ -32,9 +31,9 @@ public sealed class SmtpSender
             await client.DisconnectAsync(true,ct);
             return new(SendOutcomeKind.Sent,"OK");
         }
-        catch(AuthenticationException ex){return new(SendOutcomeKind.AuthFailure,ex.Message,535);}
-        catch(MailKit.CommandException ex){return new(SendOutcomeKind.ConfigFailure,ex.Message);}
+        catch(MailKit.Security.AuthenticationException ex){return new(SendOutcomeKind.AuthFailure,ex.Message,535);}
         catch(SmtpCommandException ex){return Classify(ex.Message,(int)ex.StatusCode);}
+        catch(MailKit.CommandException ex){return new(SendOutcomeKind.ConfigFailure,ex.Message);}
         catch(SmtpProtocolException ex){return new(SendOutcomeKind.TemporaryFailure,ex.Message);}
         catch(InvalidOperationException ex){return new(SendOutcomeKind.ConfigFailure,ex.Message);}
         catch(Exception ex){return new(SendOutcomeKind.TemporaryFailure,ex.Message);}
